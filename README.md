@@ -6,7 +6,7 @@ Argon is a highly modular, next-generation management and operations platform ta
 
 - 🧩 **Dynamic Module System:** Seamlessly load, enable, and manage custom features and integrations via the built-in Module Manager.
 - 🎨 **Beautiful UI:** Built with React, TailwindCSS, and Shadcn UI to deliver a premium, modern, and responsive interface.
-- ⚡ **High Performance:** Powered by Vite on the frontend and a lightweight backend for fast interactions.
+- ⚡ **High Performance:** Powered by TanStack Start and TanStack React Router on the frontend, alongside a lightweight backend for fast interactions.
 - 🛠️ **Extensible SDK:** Create your own modules using the Argon SDK to hook directly into the dashboard and APIs.
 - 🔒 **Secure & Scalable:** Designed with security and role-based access control at its core.
 
@@ -29,7 +29,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
 ### Running the Application
 
-To start the development server (which concurrently runs both the Vite frontend and the backend):
+To start the development server (which concurrently runs both the TanStack Start frontend and the backend):
 ```bash
 npm run dev
 ```
