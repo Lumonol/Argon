@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@font-face {
+  font-family: 'Resist Sans Display';
+  src: url('/fonts/ResistSansDisplay-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide Clerk profile and username sections */
+.cl-profileSection__profile,
+.cl-profileSection__username,
+[class*="profileImage"],
+[class*="avatarImageActions"] {
+  display: none !important;
+}
+
+@layer base {
+  :root {
+    /* Light mode */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+
+    /* Primary: Green accent */
+    --primary: 228 74% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 228 74% 59%;
+
+    --radius: 1rem;
+
+    --shadow-soft: 0 2px 15px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 7%;
+    --sidebar-primary: 228 74% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 7%;
+    --sidebar-border: 0 0% 92%;
+    --sidebar-ring: 228 74% 59%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 228 74% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 9.4%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 9.4%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 0% 9.4%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 228 74% 59%;
+
+    --shadow-soft: 0 2px 15px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 228 74% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 228 74% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-background/80 backdrop-blur-xl border border-border/50;
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 shadow-card;
+  }
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+@keyframes notif-bounce {
+  0%   { transform: scale(1) translateY(0); }
+  35%  { transform: scale(1.4) translateY(-4px); }
+  65%  { transform: scale(0.9) translateY(1px); }
+  80%  { transform: scale(1.1) translateY(-1px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes prism-pop {
+  0%   { opacity: 0; transform: scale(0.4) rotate(-18deg); }
+  60%  { opacity: 1; transform: scale(1.12) rotate(6deg); }
+  80%  { transform: scale(0.96) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes prism-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-3px) rotate(2deg); }
+}
+
+.prism-logo-anim {
+  animation:
+    prism-pop 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    prism-float 4.2s ease-in-out 600ms infinite;
+  filter: drop-shadow(0 4px 14px hsl(var(--primary) / 0.35));
+}
+
+/* ── Support widget panel + view transitions ─────────────────────── */
+@keyframes support-panel-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes support-panel-out {
+  from { opacity: 1; transform: translateY(0)    scale(1); }
+  to   { opacity: 0; transform: translateY(8px)  scale(0.96); }
+}
+@keyframes support-view-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes support-view-in-back {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.support-panel-enter { animation: support-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both; transform-origin: top right; }
+.support-panel-exit  { animation: support-panel-out 160ms cubic-bezier(0.4, 0, 1, 1) both;  transform-origin: top right; }
+.support-view-enter      { animation: support-view-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.support-view-enter-back { animation: support-view-in-back 240ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes support-typing-dot {
+  0%, 60%, 100% { transform: translateY(0);    opacity: 0.4; }
+  30%           { transform: translateY(-3px); opacity: 1; }
+}
+.support-typing-dot { animation: support-typing-dot 1s ease-in-out infinite; display: inline-block; }
+
+@keyframes bell-shake {
+  0%   { transform: scale(1) rotate(0deg); }
+  5%   { transform: scale(1.2) rotate(-15deg); }
+  10%  { transform: scale(1.2) rotate(13deg); }
+  15%  { transform: scale(1.2) rotate(-11deg); }
+  20%  { transform: scale(1.2) rotate(9deg); }
+  25%  { transform: scale(1.2) rotate(-7deg); }
+  30%  { transform: scale(1.2) rotate(6deg); }
+  36%  { transform: scale(1.2) rotate(-5deg); }
+  42%  { transform: scale(1.2) rotate(4deg); }
+  48%  { transform: scale(1.2) rotate(-3deg); }
+  54%  { transform: scale(1.2) rotate(3deg); }
+  60%  { transform: scale(1.2) rotate(-2deg); }
+  66%  { transform: scale(1.2) rotate(2deg); }
+  72%  { transform: scale(1.2) rotate(-1deg); }
+  78%  { transform: scale(1.2) rotate(1deg); }
+  84%  { transform: scale(1.2) rotate(0deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* TipTap editor styles */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: hsl(var(--muted-foreground));
+  pointer-events: none;
+  height: 0;
+}
+
+.tiptap h1 { font-size: 1.75rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+.tiptap h2 { font-size: 1.35rem; font-weight: 600; margin: 0.75rem 0 0.4rem; }
+.tiptap h3 { font-size: 1.1rem; font-weight: 600; margin: 0.5rem 0 0.3rem; }
+.tiptap p { margin: 0.4rem 0; }
+.tiptap ul { list-style: disc; padding-left: 1.5rem; margin: 0.4rem 0; }
+.tiptap ol { list-style: decimal; padding-left: 1.5rem; margin: 0.4rem 0; }
+.tiptap blockquote { border-left: 3px solid hsl(var(--primary)); padding-left: 1rem; margin: 0.5rem 0; color: hsl(var(--muted-foreground)); }
+.tiptap code { background: hsl(var(--muted)); padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; }
+.tiptap hr { border-color: hsl(var(--border)); margin: 1rem 0; }
+.tiptap img { max-width: 100%; border-radius: 0.5rem; margin: 0.5rem 0; }
+
+/* ─── Clerk UI overrides — PrismSpace design language ───────────────────── */
+
+/* Animations — theme-independent */
+.cl-modalBackdrop { backdrop-filter: none !important; animation: cl-backdrop-in 0.2s ease forwards; }
+.cl-modalBackdrop[data-state="closed"] { animation: cl-backdrop-out 0.2s ease forwards !important; }
+.cl-modalContent { animation: cl-modal-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.cl-modalContent[data-state="closed"] { animation: cl-modal-out 0.2s ease forwards !important; }
+
+@keyframes cl-backdrop-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cl-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes cl-modal-in  { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes cl-modal-out { from { opacity: 1; transform: scale(1) translateY(0); } to { opacity: 0; transform: scale(0.96) translateY(8px); } }
+
+/* Theme-independent */
+.cl-navbarButton__account .cl-navbarButtonText { font-size: 0 !important; }
+.cl-navbarButton__account .cl-navbarButtonText::after { content: "Account"; font-size: 0.875rem; }
+.cl-navbarButton { border-radius: 0.75rem !important; font-family: 'Inter', sans-serif !important; }
+.cl-profileSectionItemList { background-color: transparent !important; }
+.cl-profileSectionItem { border-radius: 0.75rem !important; }
+.cl-avatarBox { border-radius: 9999px !important; }
+.cl-headerTitle { font-weight: 700 !important; }
+.cl-formButtonPrimary, .cl-button[data-variant="solid"] {
+  background-color: hsl(160, 100%, 38%) !important; color: hsl(0, 0%, 0%) !important;
+  border-radius: 9999px !important; font-weight: 600 !important; font-family: 'Inter', sans-serif !important;
+  border: none !important; transition: opacity 0.15s !important;
+}
+.cl-formButtonPrimary:hover, .cl-button[data-variant="solid"]:hover { opacity: 0.9 !important; background-color: hsl(160, 100%, 38%) !important; }
+.cl-formButtonReset, .cl-button[data-variant="ghost"] { border-radius: 9999px !important; }
+.cl-footerActionLink, .cl-identityPreviewEditButton { color: hsl(160, 100%, 38%) !important; }
+.cl-footerActionLink:hover, .cl-identityPreviewEditButton:hover { color: hsl(160, 100%, 45%) !important; }
+.cl-otpCodeFieldInput:focus { border-color: hsl(160, 100%, 38%) !important; box-shadow: 0 0 0 2px hsla(160, 100%, 38%, 0.3) !important; }
+.cl-badge { border-radius: 9999px !important; }
+.cl-userButtonPopoverActionButton { border-radius: 0.625rem !important; transition: background-color 0.15s !important; }
+.cl-alert { border-radius: 0.75rem !important; }
+.cl-selectButton, .cl-selectOptionsContainer { border-radius: 0.75rem !important; }
+.cl-phoneInputBox { border-radius: 0.75rem !important; }
+.cl-formFieldInput, .cl-input { border-radius: 0.75rem !important; font-family: 'Inter', sans-serif !important; transition: border-color 0.2s, box-shadow 0.2s !important; }
+.cl-formFieldInput:focus, .cl-input:focus { outline: none !important; }
+.cl-formFieldLabel, .cl-headerTitle, .cl-profileSectionTitle, .cl-accordionTriggerButton { font-family: 'Inter', sans-serif !important; }
+.cl-card { backdrop-filter: none !important; border-radius: 1.5rem !important; overflow: hidden !important; font-family: 'Inter', sans-serif !important; }
+.cl-rootBox, .cl-cardBox, .cl-userProfile-root, .cl-signIn-root, .cl-signUp-root,
+.cl-signIn, .cl-signUp, .cl-modalContent, .cl-userButtonPopoverRootBox,
+.cl-userProfilePage, .cl-main, .cl-loading { background-color: transparent !important; font-family: 'Inter', sans-serif !important; }
+.cl-userButtonPopoverCard { backdrop-filter: blur(20px) !important; border-radius: 1rem !important; }
+
+/* ── Light mode (default) ────────────────────────────────────────────── */
+.cl-modalBackdrop { background-color: rgba(0, 0, 0, 0.40) !important; }
+
+.cl-rootBox, .cl-cardBox, .cl-userProfile-root, .cl-signIn-root, .cl-signUp-root,
+.cl-signIn, .cl-signUp, .cl-modalContent, .cl-userButtonPopoverRootBox,
+.cl-userProfilePage, .cl-main, .cl-loading { color: hsl(0, 0%, 10%) !important; }
+
+.cl-card {
+  background-color: #ffffff !important;
+  border: 1px solid hsl(0, 0%, 88%) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  color: hsl(0, 0%, 10%) !important;
+}
+.cl-footer, .cl-cardFooter { background-color: hsl(0, 0%, 97%) !important; border-top: 1px solid hsl(0, 0%, 90%) !important; }
+.cl-scrollBox, .cl-pageScrollBox { background-color: #f9f9f9 !important; }
+.cl-navbar { background-color: #f3f3f3 !important; border-right: 1px solid hsla(0, 0%, 85%, 0.8) !important; }
+.cl-navbarButton { color: hsl(0, 0%, 35%) !important; }
+.cl-navbarButton:hover { background-color: hsl(0, 0%, 90%) !important; color: hsl(0, 0%, 10%) !important; }
+.cl-navbarButton[data-active] { background-color: hsl(0, 0%, 90%) !important; color: hsl(160, 100%, 35%) !important; }
+.cl-formFieldInput, .cl-input { background-color: #ffffff !important; border: 1px solid rgba(0, 0, 0, 0.15) !important; color: hsl(0, 0%, 10%) !important; }
+.cl-formFieldInput:focus, .cl-input:focus { border-color: hsl(160, 100%, 38%) !important; box-shadow: 0 0 0 2px hsla(160, 100%, 38%, 0.2) !important; }
+.cl-formFieldLabel, .cl-headerTitle, .cl-profileSectionTitle, .cl-accordionTriggerButton { color: hsl(0, 0%, 10%) !important; }
+.cl-headerSubtitle, .cl-formFieldHintText, .cl-profileSectionContent__username p, .cl-userPreviewSecondaryIdentifier { color: hsl(0, 0%, 45%) !important; }
+.cl-formButtonReset, .cl-button[data-variant="ghost"] { color: hsl(0, 0%, 35%) !important; }
+.cl-formButtonReset:hover, .cl-button[data-variant="ghost"]:hover { background-color: hsl(0, 0%, 93%) !important; color: hsl(0, 0%, 10%) !important; }
+.cl-socialButtonsBlockButton { background-color: hsl(0, 0%, 96%) !important; border: 1px solid hsl(0, 0%, 85%) !important; border-radius: 9999px !important; color: hsl(0, 0%, 10%) !important; transition: background-color 0.2s !important; }
+.cl-socialButtonsBlockButton:hover { background-color: hsl(0, 0%, 92%) !important; border-color: hsl(0, 0%, 75%) !important; }
+.cl-dividerLine { background-color: hsl(0, 0%, 88%) !important; }
+.cl-dividerText { color: hsl(0, 0%, 55%) !important; background-color: transparent !important; }
+.cl-profileSection { border-color: hsl(0, 0%, 90%) !important; }
+.cl-badge { background-color: hsl(0, 0%, 93%) !important; border: 1px solid hsl(0, 0%, 85%) !important; color: hsl(0, 0%, 35%) !important; }
+.cl-userButtonPopoverCard { background-color: rgba(255, 255, 255, 0.95) !important; border: 1px solid hsl(0, 0%, 88%) !important; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.05) !important; }
+.cl-userPreviewMainIdentifier { color: hsl(0, 0%, 10%) !important; font-weight: 600 !important; }
+.cl-userButtonPopoverActionButton { color: hsl(0, 0%, 30%) !important; }
+.cl-userButtonPopoverActionButton:hover { background-color: hsl(0, 0%, 93%) !important; color: hsl(0, 0%, 10%) !important; }
+.cl-userButtonPopoverActionButtonIcon { color: hsl(0, 0%, 45%) !important; }
+.cl-userButtonPopoverFooter { border-top: 1px solid hsl(0, 0%, 90%) !important; }
+.cl-otpCodeFieldInput { background-color: #ffffff !important; border: 1px solid hsl(0, 0%, 82%) !important; color: hsl(0, 0%, 10%) !important; }
+.cl-alert { background-color: hsl(0, 0%, 97%) !important; border: 1px solid hsl(0, 0%, 88%) !important; }
+.cl-alert[data-color="danger"] { background-color: hsla(0, 72%, 51%, 0.08) !important; border-color: hsla(0, 72%, 51%, 0.25) !important; }
+.cl-selectButton, .cl-selectOptionsContainer { background-color: #ffffff !important; border: 1px solid hsl(0, 0%, 85%) !important; color: hsl(0, 0%, 10%) !important; }
+.cl-selectOption:hover, .cl-selectOption[data-focused] { background-color: hsl(0, 0%, 95%) !important; }
+.cl-phoneInputBox { background-color: #ffffff !important; border: 1px solid hsl(0, 0%, 85%) !important; }
+.cl-avatarBox { border: 2px solid hsl(0, 0%, 88%) !important; }
+
+/* ── Dark mode overrides ─────────────────────────────────────────────── */
+.dark .cl-modalBackdrop { background-color: rgba(0, 0, 0, 0.80) !important; }
+
+.dark .cl-rootBox, .dark .cl-cardBox, .dark .cl-userProfile-root,
+.dark .cl-signIn-root, .dark .cl-signUp-root, .dark .cl-signIn, .dark .cl-signUp,
+.dark .cl-modalContent, .dark .cl-userButtonPopoverRootBox,
+.dark .cl-userProfilePage, .dark .cl-main, .dark .cl-loading { color: hsl(0, 0%, 98%) !important; }
+
+.dark .cl-card { background-color: hsl(0, 0%, 10%) !important; border: 1px solid hsl(0, 0%, 18%) !important; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.3) !important; color: hsl(0, 0%, 98%) !important; }
+.dark .cl-footer, .dark .cl-cardFooter { background-color: hsl(0, 0%, 7%) !important; border-top: 1px solid hsl(0, 0%, 15%) !important; }
+.dark .cl-scrollBox, .dark .cl-pageScrollBox { background-color: #1a1a1a !important; }
+.dark .cl-navbar { background-color: #0f0f0f !important; border-right: 1px solid hsla(0, 0%, 15%, 0.5) !important; }
+.dark .cl-navbarButton { color: hsl(0, 0%, 55%) !important; }
+.dark .cl-navbarButton:hover { background-color: hsl(0, 0%, 12%) !important; color: hsl(0, 0%, 98%) !important; }
+.dark .cl-navbarButton[data-active] { background-color: hsl(0, 0%, 12%) !important; color: hsl(160, 100%, 38%) !important; }
+.dark .cl-formFieldInput, .dark .cl-input { background-color: #111111 !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: #f1f5f9 !important; }
+.dark .cl-formFieldInput:focus, .dark .cl-input:focus { border-color: #22c55e !important; box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2) !important; }
+.dark .cl-formFieldLabel, .dark .cl-headerTitle, .dark .cl-profileSectionTitle, .dark .cl-accordionTriggerButton { color: hsl(0, 0%, 98%) !important; }
+.dark .cl-headerSubtitle, .dark .cl-formFieldHintText, .dark .cl-profileSectionContent__username p, .dark .cl-userPreviewSecondaryIdentifier { color: hsl(0, 0%, 55%) !important; }
+.dark .cl-formButtonReset, .dark .cl-button[data-variant="ghost"] { color: hsl(0, 0%, 70%) !important; }
+.dark .cl-formButtonReset:hover, .dark .cl-button[data-variant="ghost"]:hover { background-color: hsl(0, 0%, 12%) !important; color: hsl(0, 0%, 98%) !important; }
+.dark .cl-socialButtonsBlockButton { background-color: hsl(0, 0%, 13%) !important; border: 1px solid hsl(0, 0%, 22%) !important; color: hsl(0, 0%, 98%) !important; }
+.dark .cl-socialButtonsBlockButton:hover { background-color: hsl(0, 0%, 18%) !important; border-color: hsl(0, 0%, 28%) !important; }
+.dark .cl-dividerLine { background-color: hsla(0, 0%, 15%, 0.5) !important; }
+.dark .cl-dividerText { color: hsl(0, 0%, 45%) !important; }
+.dark .cl-footerActionLink, .dark .cl-identityPreviewEditButton { color: hsl(160, 100%, 38%) !important; }
+.dark .cl-footerActionLink:hover, .dark .cl-identityPreviewEditButton:hover { color: hsl(160, 100%, 45%) !important; }
+.dark .cl-profileSection { border-color: hsla(0, 0%, 15%, 0.5) !important; }
+.dark .cl-badge { background-color: hsl(0, 0%, 12%) !important; border: 1px solid hsla(0, 0%, 15%, 0.5) !important; color: hsl(0, 0%, 70%) !important; }
+.dark .cl-userButtonPopoverCard { background-color: hsla(0, 0%, 7%, 0.90) !important; border: 1px solid hsla(0, 0%, 15%, 0.5) !important; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 4px 25px rgba(0, 0, 0, 0.3) !important; }
+.dark .cl-userPreviewMainIdentifier { color: hsl(0, 0%, 98%) !important; }
+.dark .cl-userButtonPopoverActionButton { color: hsl(0, 0%, 75%) !important; }
+.dark .cl-userButtonPopoverActionButton:hover { background-color: hsl(0, 0%, 12%) !important; color: hsl(0, 0%, 98%) !important; }
+.dark .cl-userButtonPopoverActionButtonIcon { color: hsl(0, 0%, 55%) !important; }
+.dark .cl-userButtonPopoverFooter { border-top: 1px solid hsla(0, 0%, 15%, 0.5) !important; }
+.dark .cl-otpCodeFieldInput { background-color: hsl(0, 0%, 0%) !important; border: 1px solid hsla(0, 0%, 15%, 0.8) !important; color: hsl(0, 0%, 98%) !important; }
+.dark .cl-alert { background-color: hsl(0, 0%, 7%) !important; border: 1px solid hsla(0, 0%, 15%, 0.5) !important; }
+.dark .cl-alert[data-color="danger"] { background-color: hsla(0, 72%, 51%, 0.1) !important; border-color: hsla(0, 72%, 51%, 0.3) !important; }
+.dark .cl-selectButton, .dark .cl-selectOptionsContainer { background-color: hsl(0, 0%, 7%) !important; border: 1px solid hsla(0, 0%, 15%, 0.8) !important; color: hsl(0, 0%, 98%) !important; }
+.dark .cl-selectOption:hover, .dark .cl-selectOption[data-focused] { background-color: hsl(0, 0%, 12%) !important; }
+.dark .cl-phoneInputBox { background-color: hsl(0, 0%, 0%) !important; border: 1px solid hsla(0, 0%, 15%, 0.8) !important; }
+.dark .cl-avatarBox { border: 2px solid hsla(0, 0%, 15%, 0.5) !important; }
+.tiptap a { color: hsl(var(--primary)); text-decoration: underline; }
