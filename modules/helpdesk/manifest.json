@@ -1,0 +1,10 @@
+{
+  "id": "helpdesk",
+  "name": "Helpdesk",
+  "description": "Support ticket system for user inquiries.",
+  "icon": "Headset",
+  "submodules": [
+    { "id": "tickets", "name": "Tickets", "description": "Manage and resolve issues", "icon": "Ticket" },
+    { "id": "knowledgebase", "name": "Knowledge Base", "description": "Help articles and guides", "icon": "Book" }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "home",
+  "name": "Home",
+  "description": "Default dashboard overview and welcome screen.",
+  "icon": "Home",
+  "version": "1.0.0"
+}

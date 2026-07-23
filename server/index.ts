@@ -4,6 +4,7 @@ import { env } from './config/env';
 
 import { functionsRouter } from './routes/functions';
 import { configRouter } from './routes/config';
+import { modulesRouter } from './routes/modules';
 
 const app = new Hono();
 
@@ -17,6 +18,10 @@ app.get('/api/health', (c) => {
 
 app.route('/api/functions', functionsRouter);
 app.route('/api/config', configRouter);
+app.route('/api/modules', modulesRouter);
+
+import { loadModuleRoutes } from './moduleLoader';
+await loadModuleRoutes(app);
 
 import { serveStatic } from '@hono/node-server/serve-static';
 

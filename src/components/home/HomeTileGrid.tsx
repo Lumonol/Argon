@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, Pencil, Check, Trash2 } from "lucide-react";
-import { ALL_TILES, TileDefinition } from "./HomeTileDefinitions";
-import { useState, useRef } from "react";
+import { Plus, Pencil, Check, Trash2, Loader2 } from "lucide-react";
+import { TileDefinition } from "./HomeTileDefinitions";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { TileSize, TileState } from "@/hooks/useHomeTiles";
-import QuickLinksWidget from "./QuickLinksWidget";
+import type { ModuleTile, ModuleWidget } from "@/sdk/ui";
 import {
   DndContext,
   closestCenter,
@@ -29,6 +29,9 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
+// Load module clients statically
+const moduleComponents = import.meta.glob('../../../modules/*/client.tsx');
+
 interface HomeTileGridProps {
   tiles: TileState[];
   workspaceId: string;
@@ -46,7 +49,7 @@ const sizeClasses: Record<TileSize, string> = {
   small: "col-span-1 row-span-1",
   medium: "col-span-2 row-span-1",
   large: "col-span-2 row-span-2",
-  widget: "col-span-4 row-span-3",
+  widget: "col-span-2 sm:col-span-3 lg:col-span-4 row-span-3",
   full: "col-span-full row-span-3",
 };
 
@@ -84,13 +87,13 @@ const SortableTile = ({ tile, definition, editing, workspaceId, userId, onEditTi
   const widgetContent = showAsWidget ? (
     <div
       className={cn(
-        "h-full",
+        "h-full overflow-hidden",
         editing && "pointer-events-none opacity-80 animate-[wiggle_0.3s_ease-in-out_infinite] border border-dashed border-muted-foreground/30 rounded-xl"
       )}
     >
-      {definition.key === "quick_links" && (
-        <QuickLinksWidget userId={userId} workspaceId={workspaceId} tileEditing={editing} />
-      )}
+      {definition.component ? (
+        <definition.component userId={userId} workspaceId={workspaceId} tileEditing={editing} tileSize={tile.size} />
+      ) : null}
     </div>
   ) : null;
 
@@ -188,18 +191,82 @@ const HomeTileGrid = ({
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [editingTileKey, setEditingTileKey] = useState<string | null>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
+  
+  const [allTiles, setAllTiles] = useState<TileDefinition[]>([]);
+  const [loadingTiles, setLoadingTiles] = useState(true);
+
+  // Dynamically load ALL_TILES from enabled modules
+  useEffect(() => {
+    const fetchModuleTiles = async () => {
+      setLoadingTiles(true);
+      try {
+        const enabledRes = await fetch('/api/modules/enabled');
+        if (!enabledRes.ok) throw new Error("Failed to fetch enabled modules");
+        const { enabledModules } = await enabledRes.json();
+        
+        let loadedTiles: TileDefinition[] = [];
+        
+        for (const modId of enabledModules) {
+          const importFn = moduleComponents[`../../../modules/${modId}/client.tsx`];
+          if (importFn) {
+            try {
+              const mod = await importFn() as any;
+              
+              if (mod.tiles) {
+                const moduleTiles = (mod.tiles as ModuleTile[]).map(t => ({
+                  key: t.id,
+                  label: t.label,
+                  description: t.description,
+                  icon: t.icon,
+                  href: () => t.href || `/dashboard/m/${modId}`
+                }));
+                loadedTiles = [...loadedTiles, ...moduleTiles];
+              }
+              
+              if (mod.widgets) {
+                const moduleWidgets = (mod.widgets as ModuleWidget[]).map(w => ({
+                  key: w.id,
+                  label: w.label,
+                  description: w.description,
+                  icon: w.icon,
+                  isWidget: true,
+                  component: w.component,
+                  defaultSize: w.defaultSize || "widget"
+                }));
+                loadedTiles = [...loadedTiles, ...moduleWidgets];
+              }
+            } catch (e) {
+              console.error(`Failed to load tiles for ${modId}`, e);
+            }
+          }
+        }
+        
+        setAllTiles(loadedTiles);
+      } catch (e) {
+        console.error("Failed to load module tiles", e);
+      } finally {
+        setLoadingTiles(false);
+      }
+    };
+    
+    fetchModuleTiles();
+  }, []);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
+  if (loadingTiles) {
+    return <div className="flex justify-center p-8"><Loader2 className="w-6 h-6 animate-spin text-muted-foreground" /></div>;
+  }
+
   const activeTiles = tiles.filter((t) => {
-    const def = ALL_TILES.find((d) => d.key === t.key);
+    const def = allTiles.find((d) => d.key === t.key);
     return def && (!def.requiresChairman || isChairman);
   });
 
-  const availableTiles = ALL_TILES.filter(
+  const availableTiles = allTiles.filter(
     (t) => !tiles.some((s) => s.key === t.key) && (!t.requiresChairman || isChairman)
   );
 
@@ -219,9 +286,9 @@ const HomeTileGrid = ({
     onReorder(arrayMove(tiles, oldIndex, newIndex));
   };
 
-  const activeDef = activeId ? ALL_TILES.find((t) => t.key === activeId) : null;
+  const activeDef = activeId ? allTiles.find((t) => t.key === activeId) : null;
   const editingTile = editingTileKey ? tiles.find((t) => t.key === editingTileKey) : null;
-  const editingTileDef = editingTileKey ? ALL_TILES.find((t) => t.key === editingTileKey) : null;
+  const editingTileDef = editingTileKey ? allTiles.find((t) => t.key === editingTileKey) : null;
 
   return (
     <>
@@ -258,7 +325,7 @@ const HomeTileGrid = ({
         <SortableContext items={activeTiles.map((t) => t.key)} strategy={rectSortingStrategy}>
           <div className="grid gap-3 grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 auto-rows-[80px]">
             {activeTiles.map((tile) => {
-              const def = ALL_TILES.find((d) => d.key === tile.key);
+              const def = allTiles.find((d) => d.key === tile.key);
               if (!def) return null;
               return (
                 <SortableTile
