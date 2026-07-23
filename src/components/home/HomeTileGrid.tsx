@@ -9,8 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { cn } from "@/lib/utils";
 import { TileSize, TileState } from "@/hooks/useHomeTiles";
 import QuickLinksWidget from "./QuickLinksWidget";
-import ActivityWidget from "./ActivityWidget";
-import SentinelWidget from "./SentinelWidget";
 import {
   DndContext,
   closestCenter,
@@ -49,6 +47,7 @@ const sizeClasses: Record<TileSize, string> = {
   medium: "col-span-2 row-span-1",
   large: "col-span-2 row-span-2",
   widget: "col-span-4 row-span-3",
+  full: "col-span-full row-span-3",
 };
 
 interface SortableTileProps {
@@ -91,12 +90,6 @@ const SortableTile = ({ tile, definition, editing, workspaceId, userId, onEditTi
     >
       {definition.key === "quick_links" && (
         <QuickLinksWidget userId={userId} workspaceId={workspaceId} tileEditing={editing} />
-      )}
-      {definition.key === "activity_tracker" && (
-        <ActivityWidget userId={userId} workspaceId={workspaceId} />
-      )}
-      {definition.key === "sentinel_queue" && (
-        <SentinelWidget workspaceId={workspaceId} />
       )}
     </div>
   ) : null;

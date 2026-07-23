@@ -5,10 +5,10 @@ import { ScrollReveal } from "@/hooks/useScrollAnimation";
 import { useEffect, useState } from "react";
 
 const ROTATING_TERMS = [
-  { abbr: "HRM", label: "staff management" },
-  { abbr: "CRM", label: "user/member relationships" },
-  { abbr: "PMS", label: "moderation tasks" },
-  { abbr: "LMS", label: "training systems" },
+  { abbr: "ERP", label: "enterprise resource planning" },
+  { abbr: "CRM", label: "community relationship management" },
+  { abbr: "SaaS", label: "software as a service" },
+  { abbr: "API", label: "application programming interface" },
 ];
 
 const MinimalHero = () => {
@@ -55,8 +55,7 @@ const MinimalHero = () => {
             <div className="flex flex-col gap-6">
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                 <span className="text-primary font-semibold">Hive </span> is the platform for innovating Roblox
-                communities — auto-rank staff from an advanced logbook, track live activity, manage your team with a
-                click of a button, and more
+                communities — build custom workflows, manage your data seamlessly, and extend functionality with powerful modules.
               </p>
 
               <div>

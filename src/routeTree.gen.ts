@@ -14,7 +14,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
-import { Route as DashboardModulerRouteImport } from './routes/dashboard.moduler'
+
 
 const SetupRoute = SetupRouteImport.update({
   id: '/setup',
@@ -41,24 +41,20 @@ const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardModulerRoute = DashboardModulerRouteImport.update({
-  id: '/moduler',
-  path: '/moduler',
-  getParentRoute: () => DashboardRoute,
-} as any)
+
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/setup': typeof SetupRoute
-  '/dashboard/moduler': typeof DashboardModulerRoute
+
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/setup': typeof SetupRoute
-  '/dashboard/moduler': typeof DashboardModulerRoute
+
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -67,7 +63,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/setup': typeof SetupRoute
-  '/dashboard/moduler': typeof DashboardModulerRoute
+
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -77,18 +73,18 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/setup'
-    | '/dashboard/moduler'
+
     | '/dashboard/settings'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/setup' | '/dashboard/moduler' | '/dashboard/settings' | '/dashboard'
+    '/' | '/setup' | '/dashboard/settings' | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
     | '/setup'
-    | '/dashboard/moduler'
+
     | '/dashboard/settings'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -136,24 +132,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/moduler': {
-      id: '/dashboard/moduler'
-      path: '/moduler'
-      fullPath: '/dashboard/moduler'
-      preLoaderRoute: typeof DashboardModulerRouteImport
-      parentRoute: typeof DashboardRoute
-    }
+
   }
 }
 
 interface DashboardRouteChildren {
-  DashboardModulerRoute: typeof DashboardModulerRoute
+
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardModulerRoute: DashboardModulerRoute,
+
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }

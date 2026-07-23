@@ -141,19 +141,7 @@ const MobileNavDrawer = ({ user, isSiteAdmin, signOut, productFeatures, discover
             </Link>
           </DrawerClose>
 
-          {/* Sentinel */}
-          <DrawerClose asChild>
-            <Link to="/sentinel" className="block px-3 py-3.5 text-base font-medium text-foreground hover:bg-accent rounded-lg transition-colors">
-              Sentinel
-            </Link>
-          </DrawerClose>
 
-          {/* Flow */}
-          <DrawerClose asChild>
-            <Link to="/flow" className="block px-3 py-3.5 text-base font-medium text-foreground hover:bg-accent rounded-lg transition-colors">
-              Flow
-            </Link>
-          </DrawerClose>
 
           {/* About */}
           <DrawerClose asChild>

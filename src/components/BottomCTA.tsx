@@ -59,8 +59,7 @@ const BottomCTA = () => {
             ​Connect Roblox. Unlock the best of your community.    
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-            Stop guessing who your best staff are. Hive automatically logs live activity and API calls. Use our built in filters to automatically scrape which staff members are performing the best.  
-          
+            Manage your community and configure your Roblox integrations effortlessly in one central dashboard.
           </p>
         </ScrollReveal>
 
