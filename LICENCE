@@ -1,0 +1,111 @@
+Effective Date: May 10, 2026
+
+Licensor: Lumonol
+Applies To: All commercial products, software, source code, frameworks, libraries, APIs, tools, assets, and repositories published by Lumonol.
+
+Part A: Commercial Products
+These terms apply to Lumonol's commercial software, SaaS platforms, and paid services.
+
+1. Definitions
+"Product" refers to any commercial software, SaaS platforms, paid APIs, subscriptions, or related services provided by Lumonol.
+
+"Licensor" refers to Lumonol.
+
+"You" refers to any individual or entity using or subscribing to the Product.
+
+2. Licence Grant
+Subject to the terms of this License, Lumonol grants You a limited, non-exclusive, revocable, non-transferable license to use the Product for its intended purposes.
+
+If you have ever visited a Lumonol website or a Lumonol communications server, you agree to this licence. Copying a piece of software or a feature violates this agreement.
+
+3. Restricted Use
+You may NOT:
+
+Resell, sublicense, or redistribute the Product
+Reverse engineer, decompile, or attempt to extract source code from the Product
+Use the Product for unlawful, abusive, malicious, or harmful purposes
+Bypass any payment, monetization, or licensing systems
+Use the Product in direct competition with Lumonol
+4. Termination
+Lumonol reserves the right to revoke access, licenses, or permissions to any Product at its sole discretion, at any time, with or without reason or notice.
+
+Products may be remotely deactivated by Lumonol. Upon termination or deactivation, You must immediately cease using the Product, and any experiences or games relying on the Product may become entirely non-functional.
+
+5. Warranty Disclaimer
+THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+
+LUMONOL SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE PRODUCT OR ITS USE.
+
+LUMONOL DOES NOT GUARANTEE THAT THE PRODUCTS WILL FUNCTION CONTINUOUSLY, INDEFINITELY, OR WITHOUT INTERRUPTION, AND MAY DISCONTINUE THEM AT ANY TIME.
+
+Part B: Open Source Software
+These terms apply to all open source repositories, frameworks, libraries, and tools released by Lumonol.
+
+1. Definitions
+"Software" refers to any source code, documentation, assets, libraries, frameworks, tools, or related materials released by Lumonol under its Open Source License.
+
+"Licensor" refers to Lumonol.
+
+"You" refers to any individual or entity using, modifying, distributing, or hosting the Software.
+
+2. Licence Grant
+Subject to the terms of this License, Lumonol grants You a limited, non-exclusive, revocable, non-transferable license to:
+
+Use the Software
+Modify the Software
+Fork the Software
+Distribute modified versions of the Software
+3. Restricted Use
+You may NOT:
+
+Re-license the Software under another license
+Remove Lumonol copyright notices or attribution
+Claim ownership of the original Software
+Use the Software for unlawful, abusive, malicious, or harmful purposes
+4. Attribution
+You must provide visible attribution to Lumonol in:
+
+Source repositories
+Product documentation
+Credits pages
+Dashboards or administrative interfaces where reasonably practical
+Example attribution:
+
+"Powered by Lumonol Open Source Software"
+
+5. Distribution
+You may distribute modified versions of the Software provided that:
+
+The modified work remains under this License
+You document significant modifications
+All original copyright notices are retained
+6. Ownership
+The Software is licensed, not sold.
+
+All ownership, trademarks, branding, intellectual property rights, and associated rights remain the property of Lumonol unless explicitly stated otherwise.
+
+7. Termination
+This License automatically terminates if You violate any term of this License.
+
+Upon termination, You must immediately:
+
+Stop using the Software
+Remove deployed instances where applicable
+Cease distribution
+Destroy copies under Your control
+Lumonol reserves the right to revoke access, licenses, or permissions at its sole discretion, at any time, with or without reason or notice.
+
+8. Warranty Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+LUMONOL SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+Part C: General Terms
+1. Governing Law
+This License shall be governed by and interpreted under the laws of England and Wales.
+
+2. Official Source
+Official Website:
+
+https://www.lumonol.co.uk
+By using any Lumonol software or products, You agree to the terms of this License.
